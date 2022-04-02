@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login/login.component';
 import { NotfoundComponent } from './notfound/notfound/notfound.component';
-import { HomeComponent } from './home/home/home.component';
 import { HomepageComponent } from './home/homepage/homepage.component';
 
 @NgModule({
@@ -13,7 +12,6 @@ import { HomepageComponent } from './home/homepage/homepage.component';
     AppComponent,
     LoginComponent,
     NotfoundComponent,
-    HomeComponent,
     HomepageComponent
   ],
   imports: [
