@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login/login.component';
 import { NotfoundComponent } from './notfound/notfound/notfound.component';
 import { HomepageComponent } from './home/homepage/homepage.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NotfoundComponent,
-    HomepageComponent
+    HomepageComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
