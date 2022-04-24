@@ -1,3 +1,4 @@
+import { CartComponent } from './cart/cart.component';
 import { NotfoundComponent } from './notfound/notfound/notfound.component';
 import { HomepageComponent } from './home/homepage/homepage.component';
 import { LoginComponent } from './login/login/login.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'home', component: HomepageComponent, canActivate: [AuthGuard] },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotfoundComponent },
 ];
 

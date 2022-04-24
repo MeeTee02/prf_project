@@ -1,17 +1,22 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a routerLink="/home" class="navbar-brand">Webshop</a>
-      <button class="navbar-toggler" type="button">
-        <span class="navbar-toggler-icon"></span>
+  <div class="container-fluid">
+    <a routerLink="/home" class="navbar-brand">Webshop</a>
+    <button class="navbar-toggler" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a routerLink="/cart" class="nav-link">Cart</a>
+        </li>
+      </ul>
+      <button class="btn btn-primary" type="button" (click)="logout()">
+        Logout
       </button>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a routerLink="/home" class="nav-link">Cart</a>
-          </li>
-        </ul>
-        <button class="btn btn-primary" type="button" (click)="logout()">Logout</button>
-      </div>
     </div>
-  </nav>
-  
+  </div>
+</nav>
+
+<div class="shopping-list" *ngFor="let item of items">
+    <app-item [id]="item.id" [name]="item.name" [price]="item.price" [img]="item.img"></app-item>
+</div>

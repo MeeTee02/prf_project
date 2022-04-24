@@ -8,6 +8,8 @@ import { NotfoundComponent } from './notfound/notfound/notfound.component';
 import { HomepageComponent } from './home/homepage/homepage.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
+import { ItemComponent } from './item/item.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { SignupComponent } from './signup/signup.component';
     LoginComponent,
     NotfoundComponent,
     HomepageComponent,
-    SignupComponent
+    SignupComponent,
+    ItemComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
