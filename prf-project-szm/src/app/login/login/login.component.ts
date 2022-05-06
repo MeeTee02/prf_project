@@ -13,14 +13,16 @@ export class LoginComponent implements OnInit {
   token: string = '';
   error: boolean = false;
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
+    localStorage.clear();
+
     this.signInForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(6),
       ]),
     });
   }
@@ -30,12 +32,11 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    if (this.loginService.login(this.signInForm.value)) {
-      this.error = false;
-      this.loginService.generateToken();
-    } else {
+    this.loginService.login(this.signInForm.value).then((res) => {
+      this.loginService.generateToken(res);
+    }).catch((e) => {
       this.error = true;
-    }
+    })
 
     /* this.usersService.login(this.signInForm.value).subscribe({
       next: (v: any) => {

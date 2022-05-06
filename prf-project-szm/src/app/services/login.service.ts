@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -5,30 +6,27 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AngularFireAuth) {}
 
   login(userData: { email: string; password: string }) {
-    if (
-      userData.email === 'test@gmail.com' &&
-      userData.password === 'test1234'
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.auth.signInWithEmailAndPassword(userData.email, userData.password);
   }
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/login']);
+    return this.auth.signOut();
   }
 
-  generateToken() {
-    localStorage.setItem('loggedInToken', Math.random().toString());
+  generateToken(res: any) {
+    localStorage.setItem('user', res.user.uid);
     this.router.navigate(['/home']);
   }
 
   getLoggedInToken() {
-    return !!localStorage.getItem('loggedInToken');
+    return !!localStorage.getItem('user');
+  }
+
+  signUp(userData: {email: string, password: string}) {
+    return this.auth.createUserWithEmailAndPassword(userData.email, userData.password);
   }
 }

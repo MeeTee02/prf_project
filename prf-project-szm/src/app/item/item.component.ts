@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
-  @Input() id: number;
+  @Input() id: string;
   @Input() name: string;
   @Input() price: number;
   @Input() img: string;
