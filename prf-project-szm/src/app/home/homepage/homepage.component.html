@@ -7,6 +7,12 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
+          <a routerLink="/add" class="nav-link">New Product</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/update" class="nav-link">Update Product</a>
+        </li>
+        <li class="nav-item">
           <a routerLink="/cart" class="nav-link">Cart</a>
         </li>
       </ul>
@@ -18,5 +24,5 @@
 </nav>
 
 <div class="shopping-list" *ngFor="let item of items">
-    <app-item [id]="item.id" [name]="item.name" [price]="item.price" [img]="item.img"></app-item>
+    <app-item [name]="item.name" [price]="item.price" [image]="item.image"></app-item>
 </div>

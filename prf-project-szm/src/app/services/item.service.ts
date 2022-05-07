@@ -1,19 +1,51 @@
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Item } from './../models/item.model';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
-  items: Item[] = [
-    new Item('1', 'Starscourge Greatsword', 2000, 'https://eldenring.wiki.fextralife.com/file/Elden-Ring/starscourge-greatsword-weapon-elden-ring-wiki-guide.png'),
-    new Item('2', 'Greatsword', 1000, 'https://eldenring.wiki.fextralife.com/file/Elden-Ring/greatsword_colossal_swords_elden_ring_wiki_guide_200px.png'),
-    new Item('3', 'Golden Halberd', 500, 'https://eldenring.wiki.fextralife.com/file/Elden-Ring/golden_halberd_halberd_weapon_elden_ring_wiki_guide_200px.png')
-  ]
+  items: Item[] = [];
 
-  constructor() { }
+  constructor(private router: Router, private afs: AngularFirestore) { }
 
   getItems() {
+    this.afs.collection('Items').get().subscribe(res => {
+      res.docs.forEach((doc: any) => {
+        this.items.push(new Item(doc.data().name, doc.data().price, doc.data().image));
+      })
+    }), error => {
+      console.log(error);
+    };
+
     return this.items;
+  }
+
+  async addItem(item: Item) {
+    this.afs.collection('Items').doc(item.name).get().subscribe(async res => {
+      if(res.exists) {
+        alert('This product already exists!');
+        return;
+      } else {
+        alert('Product added successfully!');
+        return await this.afs.collection('Items').doc(item.name).set(item);
+      }
+    });
+
+
+  }
+
+  async updateItem(item: Item) {
+    this.afs.collection('Items').doc(item.name).get().subscribe(async res => {
+      if(res.exists) {
+        alert('Product updated successfully!');
+        return await this.afs.collection('Items').doc(item.name).set(item);
+      } else {
+        alert('The product with this name doesn\'t exist');
+        return;
+      }
+    });
   }
 }

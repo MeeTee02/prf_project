@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a routerLink="/home" class="navbar-brand">Webshop</a>
+    <button class="navbar-toggler" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a routerLink="/add" class="nav-link">New Product</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/update" class="nav-link">Update Product</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/cart" class="nav-link">Cart</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="update-item-container">
+  <form [formGroup]="updateItemForm" (ngSubmit)="onFormSubmit()">
+    <div class="form-group">
+      <h2 class="text-dark">Update Product</h2>
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+      />
+    </div>
+    <span
+      class="help-block error"
+      *ngIf="
+        !updateItemForm.get('name')?.valid && updateItemForm.get('name')?.touched
+      "
+      >Invalid name!</span
+    >
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input
+        type="number"
+        id="price"
+        class="form-control"
+        formControlName="price"
+      />
+      <span
+        class="help-block error"
+        *ngIf="
+          !updateItemForm.get('price')?.valid && updateItemForm.get('price')?.touched
+        "
+        >Invalid price!</span
+      >
+    </div>
+    <div class="form-group">
+      <label for="image">ImageURL</label>
+      <input
+        type="text"
+        id="image"
+        class="form-control"
+        formControlName="image"
+      />
+    </div>
+    <span
+      class="help-block error"
+      *ngIf="
+        !updateItemForm.get('image')?.valid && updateItemForm.get('image')?.touched
+      "
+      >Invalid image url!</span
+    >
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary col-md-12">Update</button>
+    </div>
+  </form>
+</div>

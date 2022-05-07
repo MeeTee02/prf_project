@@ -1,6 +1,6 @@
 <div class="item border border-3 bg-dark bg-gradient">
-  <img [src]="img" alt="Missing img">
+  <img [src]="image" alt="assets/altImg.jpg">
   <span class="item-name text-light">{{ name }}</span>
   <span class="item-name text-light">${{ price }}</span>
-  <button id="purchaseItem" class="btn btn-primary" type="button">Buy</button>
+  <button id="purchaseItem" class="btn btn-primary" type="button" (click)="buyItem()">Buy</button>
 </div>

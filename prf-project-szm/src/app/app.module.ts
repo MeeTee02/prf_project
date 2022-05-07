@@ -11,7 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
 import { ItemComponent } from './item/item.component';
 import { CartComponent } from './cart/cart.component';
-import { AngularFireModule } from '@angular/fire/compat'
+import { AngularFireModule } from '@angular/fire/compat';
+import { AddItemComponent } from './add-item/add-item.component';
+import { UpdateItemComponent } from './update-item/update-item.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { AngularFireModule } from '@angular/fire/compat'
     HomepageComponent,
     SignupComponent,
     ItemComponent,
-    CartComponent
+    CartComponent,
+    AddItemComponent,
+    UpdateItemComponent
   ],
   imports: [
     BrowserModule,
