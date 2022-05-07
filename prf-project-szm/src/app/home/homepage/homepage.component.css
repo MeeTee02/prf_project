@@ -1,5 +1,6 @@
 .shopping-list {
-  display: flex;
+  display: inline-flex;
   gap: 10px;
   flex-direction: row;
+  flex-wrap: wrap;
 }

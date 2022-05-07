@@ -1,7 +1,6 @@
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Item } from './../models/item.model';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +8,10 @@ import { Router } from '@angular/router';
 export class ItemService {
   items: Item[] = [];
 
-  constructor(private router: Router, private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore) { }
 
   getItems() {
+    this.items = [];
     this.afs.collection('Items').get().subscribe(res => {
       res.docs.forEach((doc: any) => {
         this.items.push(new Item(doc.data().name, doc.data().price, doc.data().image));
@@ -25,7 +25,7 @@ export class ItemService {
 
   async addItem(item: Item) {
     this.afs.collection('Items').doc(item.name).get().subscribe(async res => {
-      if(res.exists) {
+      if (res.exists) {
         alert('This product already exists!');
         return;
       } else {
@@ -39,7 +39,7 @@ export class ItemService {
 
   async updateItem(item: Item) {
     this.afs.collection('Items').doc(item.name).get().subscribe(async res => {
-      if(res.exists) {
+      if (res.exists) {
         alert('Product updated successfully!');
         return await this.afs.collection('Items').doc(item.name).set(item);
       } else {
